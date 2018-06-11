@@ -13,12 +13,20 @@ function getRepoContributors(repoOwner, repoName, cb) {
       'Authorization': token
     }
   };
+
+
+
   request(options, function(err, res, body) {
     cb(err, body);
+
   });
 }
 
 getRepoContributors("jquery", "jquery", function(err, result) {
   console.log("Errors:", err);
-  console.log("Result:", result);
+  var obj = JSON.parse(result);
+  for (var i = 0; i < obj.length; i++) {
+    console.log(obj[i]['avatar_url']);
+  }
+  // }
 });
